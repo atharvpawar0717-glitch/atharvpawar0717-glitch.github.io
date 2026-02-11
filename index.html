@@ -6,6 +6,8 @@
 <title>Maharashtra Travel Guide</title>
 
 <style>
+html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -18,6 +20,8 @@ header {
   color: white;
   text-align: center;
   padding: 20px;
+  position: sticky;
+  top: 0;
 }
 
 nav a {
@@ -28,7 +32,7 @@ nav a {
 }
 
 section {
-  padding: 40px 20px;
+  padding: 50px 20px;
   max-width: 1000px;
   margin: auto;
 }
@@ -36,23 +40,31 @@ section {
 .card {
   background: white;
   margin-bottom: 30px;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.card.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card:hover {
+  transform: scale(1.03);
 }
 
 .card img {
   width: 100%;
-  height: 220px;
+  height: 250px;
   object-fit: cover;
 }
 
 .card-content {
   padding: 20px;
-}
-
-h2 {
-  margin-top: 0;
 }
 
 footer {
@@ -70,7 +82,6 @@ footer {
   <h1>Explore Maharashtra</h1>
   <nav>
     <a href="#places">Places</a>
-    <a href="#about">About</a>
   </nav>
 </header>
 
@@ -78,39 +89,60 @@ footer {
   <h2>Top Places to Visit</h2>
 
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1" alt="Lonavala">
+    <img src="Gateway-Of-India_600.jpg" alt="Gateway of India">
     <div class="card-content">
-      <h3>Lonavala</h3>
-      <p>Beautiful hill station famous for waterfalls, greenery, and peaceful weather.</p>
+      <h3>Gateway of India</h3>
+      <p>Iconic monument in Mumbai and one of Maharashtra’s most famous landmarks.</p>
     </div>
   </div>
 
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1587135991058-8816c3f4f1d2" alt="Mahabaleshwar">
+    <img src="Satara-1.jpg" alt="Satara">
     <div class="card-content">
-      <h3>Mahabaleshwar</h3>
-      <p>Famous for strawberry farms, scenic viewpoints, and cool climate.</p>
+      <h3>Satara</h3>
+      <p>Known for Kaas Plateau, waterfalls, and scenic mountain views.</p>
     </div>
   </div>
 
   <div class="card">
-    <img src="https://images.unsplash.com/photo-1603553329474-99c3a3e4a06c" alt="Ajanta Ellora">
+    <img src="Ajanta-and-Ellora-Cavessssss-edited.jpg" alt="Ajanta Ellora">
     <div class="card-content">
       <h3>Ajanta & Ellora Caves</h3>
-      <p>Historic UNESCO World Heritage caves with ancient rock-cut architecture.</p>
+      <p>UNESCO World Heritage caves with ancient Indian rock-cut architecture.</p>
     </div>
   </div>
 
-</section>
+  <div class="card">
+    <img src="visapur.jpg" alt="Visapur Fort">
+    <div class="card-content">
+      <h3>Visapur Fort</h3>
+      <p>Historic fort near Lonavala, perfect for trekking and adventure lovers.</p>
+    </div>
+  </div>
 
-<section id="about">
-  <h2>About This Website</h2>
-  <p>This website showcases some of the best travel destinations in Maharashtra. Explore nature, history, and adventure all in one state.</p>
 </section>
 
 <footer>
   <p>© 2026 Maharashtra Travel Guide</p>
 </footer>
+
+<script>
+const cards = document.querySelectorAll('.card');
+
+function showCards() {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  cards.forEach(card => {
+    const cardTop = card.getBoundingClientRect().top;
+    if(cardTop < triggerBottom) {
+      card.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', showCards);
+window.addEventListener('load', showCards);
+</script>
 
 </body>
 </html>
